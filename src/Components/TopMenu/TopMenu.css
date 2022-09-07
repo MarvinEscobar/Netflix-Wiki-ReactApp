@@ -1,0 +1,49 @@
+.topmenu{
+    position:fixed;
+    top:0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    color:white;
+    background:none;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.topmenu .btn{
+    margin-right: 25px;
+}
+
+#userlnk{
+    color:var(--light);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 25px;
+}
+
+.categories{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.category{
+    padding:10px;
+    color:var(--light);
+    text-decoration: none;
+}
+
+.logo-area:hover,#userlnk:hover, .category:hover{
+    transition: .3s;
+    transform: scale(1.1);
+    cursor:pointer;
+}
+
+.menus {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+  }

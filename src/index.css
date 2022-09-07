@@ -1,13 +1,128 @@
+:root {
+  --primary: #141414;
+  --secondary: #e50914;
+  --light: #f3f3f3;
+  --dark: #686868;
+  --highlight: yellow;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.home header,
+.authentication header,
+.register header,
+.account header {
+  background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/908077b4-cf0a-43c3-b2c9-435fb990299b/0575f84c-3b70-4342-a5a1-320d374612b0/NL-en-20220829-popsignuptwoweeks-perspective_alpha_website_small.jpg");
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.home section,
+.authentication section,
+.register section,
+.account section {
+  display: flex;
+  justify-content: center;
+  padding: 30px 10px 30px 10px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 10px 0 10px 0;
+  color: grey;
+  width: 100%;
+  z-index: 0;
+}
+
+.editform {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-radius: 25px;
+  margin-top: -350px;
+  width: 250px;
+  padding: 50px;
+  height: fit-content;
+  max-width: 200px;
+  top: 0;
+  left: 0;
+}
+
+.editform:after {
+  content: "";
+  background-color: var(--light);
+  border-radius: 25px;
+  width: 250px;
+  padding: 50px;
+  height: 550px;
+  max-width: 200px;
+  position: absolute;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+}
+
+.editform > * {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 15px;
+}
+
+.editform label {
+  color: var(--secondary);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+input:focus {
+  outline: none !important;
+  border: 1px solid var(--secondary);
+  box-shadow: 0 0 10px var(--highlight);
+}
+
+select {
+  border-radius: 25px;
+  background-color: var(--secondary);
+  color: var(--light);
+  padding: 5px;
+  font-weight: 700;
+}
+
+option {
+  background-color: var(--light);
+  color: var(--primary);
+}
+
+.errorMessage{
+  color:var(--secondary);
+  align-self: center;
+}
+
+.link{
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--secondary);
 }

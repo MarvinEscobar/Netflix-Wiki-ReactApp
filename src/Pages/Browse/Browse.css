@@ -1,0 +1,32 @@
+.browse{
+    padding-top: 50px;
+}
+
+.main-container {
+    padding: 10px;
+  }
+
+  h1{
+    color:var(--light);
+  }
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   }
+  
+  .box a {
+    transform: scale(1);
+    transition: .4s;  
+    margin: 0 20px 20px 0;
+  }
+  
+  .box a:hover { 
+    transform: scale(1.2);
+    z-index: 1;
+  }
+  
+  .box img {
+    border-radius: 2px;
+  }

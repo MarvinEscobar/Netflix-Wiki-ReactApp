@@ -1,13 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import ScopedContextProvider from "./Contexts/ScopedContextProvider";
+import AuthenticationStateContext from "./Contexts/AuthenticationStateProvider";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthenticationStateContext>
+      <ScopedContextProvider>
+        <App />
+      </ScopedContextProvider>
+    </AuthenticationStateContext>
   </React.StrictMode>
 );
 
