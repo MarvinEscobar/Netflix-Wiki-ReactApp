@@ -6,7 +6,7 @@ function EmailField(props) {
       {props.DisplayName}
       <input
         id={props.Id}
-        autoComplete="username email"
+        autoComplete="email"
         className="textfield"
         type="email"
         placeholder="Emailaddress"

@@ -12,9 +12,11 @@ import DateSelector from "../../Components/DateSelector/DateSelector";
 import Button from "../../Components/Button/Button";
 import ErrorField from "../../Components/Errorhandlers/ErrorField";
 import {  handleRegistrationAsync } from '../../Firebase/FirebaseEntitiesContext';
-import {Firebase} from '../../Constants/Messages';
+import {Firebase, RapidApi} from '../../Constants/Messages';
 import EditForm from '../../Components/EditForm/EditForm';
 import  CountrySelector from '../../Components/CountrySelector/CountrySelector';
+import {getAllCountries} from '../../Data/RapidApi';
+
 function Register() {
   const { newemail } = useParams();
   const history = useHistory();
@@ -29,10 +31,17 @@ function Register() {
   let [country, setCountry] = useState(null);
   let [birthdate, setBirthdate] = useState(null);
   let [errorMessage, setErrorMessage] = useState(null);
+  let [countries, setCountries] = useState(null);
 
   useEffect(() => {
     if (authState.user) {
       handleNavigation(Routes.Browse);
+    }else{
+      var data = getAllCountries();
+
+      if(data.Status === RapidApi.Succes){
+        setCountries(data.Result);
+      }
     }
   });
 
@@ -55,15 +64,6 @@ function Register() {
     history.goForward();
   }
 
-  var data = [{
-    country:"Netherlands",
-    countrycode:"NL"
-  },
-  {
-    country:"Neverland",
-    countrycode:"NV"
-  }]
-
   return (
     <main className="register">
       <header className="txt-center"></header>
@@ -77,7 +77,7 @@ function Register() {
           <TextField Id="surname" DisplayName="Surname" Placeholder="Surname" OnInput={setSurname}/>
           <GenderSelector Id="gender" DisplayName="Gender" OnChange={setGender}/>
           <DateSelector Id="birthdate" DisplayName="Birthdate" OnChange={setBirthdate} />
-          <CountrySelector Id="country" DisplayName="Country" Items={data} OnChange={setCountry}/>
+          <CountrySelector Id="country" DisplayName="Country" Items={countries} OnChange={setCountry}/>
           <ErrorField ErrorMessage={errorMessage}/>
 
           <Button Text={"Registreren"} Type={"submit"} />

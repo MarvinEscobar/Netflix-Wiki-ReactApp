@@ -9,3 +9,8 @@ export const Firebase ={
     Default:"Something went wrong.",
     Succes:"Succes"
 };
+
+export const RapidApi ={
+    Default:"Something went wrong.",
+    Succes:"Succes"
+};

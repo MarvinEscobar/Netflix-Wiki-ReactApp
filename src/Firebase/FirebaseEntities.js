@@ -12,9 +12,8 @@ export class Account {
 }
 
 export class Result {
-    constructor(result, status) {
-      this.Result = result;
-      this.Status =status;
-    }
+  constructor(result, status) {
+    this.Result = result;
+    this.Status = status;
   }
-  
+}
