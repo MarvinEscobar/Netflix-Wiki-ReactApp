@@ -9,6 +9,7 @@ import DateSelector from "../../Components/DateSelector/DateSelector";
 import Button from "../../Components/Button/Button";
 import ErrorField from "../../Components/Errorhandlers/ErrorField";
 import { updateAccountAsync, getAccount } from '../../Firebase/FirebaseEntitiesContext';
+import {getAllCountries} from '../../Data/RapidApi';
 import { Firebase } from '../../Constants/Messages';
 import EditForm from '../../Components/EditForm/EditForm';
 import CountrySelector from '../../Components/CountrySelector/CountrySelector';
@@ -24,6 +25,7 @@ function Profile() {
   let [country, setCountry] = useState(null);
   let [birthdate, setBirthdate] = useState(null);
   let [errorMessage, setErrorMessage] = useState(null);
+  let [countries, setCountries] = useState(null);
 
   useEffect(() => {
     if (!authState?.user?.uid) {
@@ -41,6 +43,11 @@ function Profile() {
           setCountry(account.countrycode);
         }
       });
+      var data = getAllCountries();
+
+      if(data.Status === RapidApi.Succes){
+        setCountries(data.Result);
+      }
     }
   });
 
@@ -66,16 +73,6 @@ function Profile() {
     history.goForward();
   }
 
-  var data = [{
-    country: "Netherlands",
-    countrycode: "NL"
-  },
-  {
-    country: "Neverland",
-    countrycode: "NV"
-  }]
-
-
   return (
     <main className="account">
       <header className="txt-center"></header>
@@ -85,7 +82,7 @@ function Profile() {
           <TextField Id="surname" DisplayName="Surname" Placeholder="Surname" Value={surname} OnInput={setSurname} />
           <GenderSelector Id="gender" DisplayName="Gender" Value={gender} OnChange={setGender} />
           <DateSelector Id="birthdate" DisplayName="Birthdate" Value={birthdate} OnChange={setBirthdate} />
-          <CountrySelector Id="country" DisplayName="Country" Value={country} Items={data} OnChange={setCountry} />
+          <CountrySelector Id="country" DisplayName="Country" Value={country} Items={countries} OnChange={setCountry} />
           <Button Text={"Change password"} Type={"button"} OnClick={() => handleNavigation(Routes.PasswordUpdate)} />
           <Button Text={"Update"} Type={"submit"} />
           <CustomLink Title="Delete account" To={Routes.AccountDelete} />
