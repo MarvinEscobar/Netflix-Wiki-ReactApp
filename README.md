@@ -1,2 +1,2 @@
 # Netflix-Wiki-ReactApp
-A Netflix Wiki Reatt Application
+A Netflix Wiki React Application
