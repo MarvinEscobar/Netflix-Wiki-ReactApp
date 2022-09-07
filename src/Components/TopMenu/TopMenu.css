@@ -22,14 +22,14 @@
     margin-right: 25px;
 }
 
-.categories{
+.genres{
     display: flex;
     justify-content: center;
     font-size: 18px;
     font-weight: 800;
 }
 
-.category{
+.genre{
     padding:10px;
     color:var(--light);
     text-decoration: none;

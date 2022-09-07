@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import { AuthenticationStateContext } from "../../Contexts/AuthenticationStateProvider";
-import CategoryMenu from "../../Components/TopMenu/CategoryMenu";
+import GenresMenu from "../../Components/TopMenu/CategoryMenu";
 import { Routes } from "../../Constants/Environment";
 
 function Browse() {
