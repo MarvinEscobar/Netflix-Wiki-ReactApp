@@ -21,7 +21,7 @@ export async function handleRegistrationAsync(
   confirmedPassword,
   gender,
   birthdate,
-  country
+  countrycode
 ) {
   if (
     !email ||
@@ -32,8 +32,8 @@ export async function handleRegistrationAsync(
     !gender ||
     gender === '' ||
     !birthdate ||
-    !country ||
-    country === ''
+    !countrycode ||
+    countrycode === ''
   )
     return new Result(null, Error.AllFieldsRequired);
 
@@ -52,7 +52,7 @@ export async function handleRegistrationAsync(
           surname,
           gender,
           birthdate,
-          country,
+          countrycode,
         });
         return new Result(user, Firebase.Succes);
       })
@@ -141,7 +141,7 @@ export async function updateAccountAsync(
   surname,
   gender,
   birthdate,
-  country
+  countrycode
 ) {
   try {
 
@@ -151,8 +151,8 @@ export async function updateAccountAsync(
       !gender ||
       gender === '' ||
       !birthdate ||
-      !country ||
-      country === ''
+      !countrycode ||
+      countrycode === ''
     )
       return new Result(null, Error.AllFieldsRequired);
 
@@ -164,7 +164,7 @@ export async function updateAccountAsync(
       surname,
       gender,
       birthdate,
-      country,
+      countrycode,
     });
     return new Result(true, Firebase.Succes);
   } catch (error) {

@@ -1,6 +1,6 @@
 import "./TopMenu.css";
 
-function GenresMenu(props) {
+function CategoryMenu(props) {
   return (
     <nav className="genres">
       <a href="#home" className="genre">
@@ -16,4 +16,4 @@ function GenresMenu(props) {
   );
 }
 
-export default GenresMenu;
+export default CategoryMenu;

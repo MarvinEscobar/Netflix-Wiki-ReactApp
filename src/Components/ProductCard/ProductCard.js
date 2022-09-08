@@ -2,11 +2,11 @@ import './ProductCard.css';
 
 function ProductCard(props){
     return(
-        <a href="/" className="productcard" >
+        <a id={props.Id} href={`/item/${props.Value.netflix_id}`} className="productcard" >
               <img
-                src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p1.PNG?raw=true"
+                src={props.Value.img}
                 alt=""/>
-              <label>Label</label>
+              <label>{props.Value.title} {props.Value.rating}</label>
             </a>
     );
 }

@@ -1,5 +1,5 @@
 import "./Account.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthenticationStateContext } from "../../Contexts/AuthenticationStateProvider";
 import TextField from "../../Components/TextFields/TextField";
@@ -9,11 +9,12 @@ import DateSelector from "../../Components/DateSelector/DateSelector";
 import Button from "../../Components/Button/Button";
 import ErrorField from "../../Components/Errorhandlers/ErrorField";
 import { updateAccountAsync, getAccount } from '../../Firebase/FirebaseEntitiesContext';
-import {getAllCountries} from '../../Data/RapidApi';
+import { getAllCountries } from '../../Data/RapidApi';
 import { Firebase } from '../../Constants/Messages';
 import EditForm from '../../Components/EditForm/EditForm';
 import CountrySelector from '../../Components/CountrySelector/CountrySelector';
 import CustomLink from '../../Components/Base/CustomLink';
+import { RapidApi } from '../../Constants/Messages';
 
 function Profile() {
   const history = useHistory();
@@ -22,16 +23,21 @@ function Profile() {
   let [firstname, setFirstname] = useState(null);
   let [surname, setSurname] = useState(null);
   let [gender, setGender] = useState(null);
-  let [country, setCountry] = useState(null);
+  let [countrycode, setCountryCode] = useState(null);
   let [birthdate, setBirthdate] = useState(null);
   let [errorMessage, setErrorMessage] = useState(null);
   let [countries, setCountries] = useState(null);
+
+  const handleNavigation = useCallback((path) => {
+    history.push(path);
+    history.goForward();
+  }, [history]);
 
   useEffect(() => {
     if (!authState?.user?.uid) {
       handleNavigation(Routes.Login);
     }
-    else if (!firstname && !surname && !gender && !birthdate && !country) {
+    else if (!firstname && !surname && !gender && !birthdate && !countrycode) {
       getAccount(authState.user.uid).then((response) => {
 
         if (response?.Result && response?.Status === Firebase.Succes) {
@@ -40,23 +46,24 @@ function Profile() {
           setSurname(account.surname);
           setGender(account.gender);
           setBirthdate(account.birthdate);
-          setCountry(account.countrycode);
+          setCountryCode(account.countrycode);
         }
       });
-      var data = getAllCountries();
-
-      if(data.Status === RapidApi.Succes){
-        setCountries(data.Result);
-      }
+      
+      Promise.resolve(getAllCountries()).then((data) => {
+        if (data.Status === RapidApi.Succes) {
+          setCountries(data.Result);
+        }
+      });
     }
-  });
+  }, [countries, authState, birthdate, countrycode, firstname, gender, surname, handleNavigation]);
 
   async function handleUpdate() {
     if (
       window.confirm(
         "Are you sure you want to proceed?"
       )) {
-      let result = await Promise.resolve(updateAccountAsync(authState?.user?.uid, firstname, surname, gender, birthdate, country));
+      let result = Promise.resolve(updateAccountAsync(authState?.user?.uid, firstname, surname, gender, birthdate, countrycode));
 
       if (result?.Status === Firebase.Succes) {
         alert("Your profile has been succesfully updated.");
@@ -68,11 +75,6 @@ function Profile() {
     }
   }
 
-  function handleNavigation(path) {
-    history.push(path);
-    history.goForward();
-  }
-
   return (
     <main className="account">
       <header className="txt-center"></header>
@@ -82,7 +84,7 @@ function Profile() {
           <TextField Id="surname" DisplayName="Surname" Placeholder="Surname" Value={surname} OnInput={setSurname} />
           <GenderSelector Id="gender" DisplayName="Gender" Value={gender} OnChange={setGender} />
           <DateSelector Id="birthdate" DisplayName="Birthdate" Value={birthdate} OnChange={setBirthdate} />
-          <CountrySelector Id="country" DisplayName="Country" Value={country} Items={countries} OnChange={setCountry} />
+          <CountrySelector Id="country" DisplayName="Country" Value={countrycode} Items={countries} OnChange={setCountryCode} />
           <Button Text={"Change password"} Type={"button"} OnClick={() => handleNavigation(Routes.PasswordUpdate)} />
           <Button Text={"Update"} Type={"submit"} />
           <CustomLink Title="Delete account" To={Routes.AccountDelete} />

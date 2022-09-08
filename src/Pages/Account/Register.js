@@ -1,5 +1,5 @@
 import "./Account.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useParams } from 'react-router';
 import { AuthenticationStateContext } from "../../Contexts/AuthenticationStateProvider";
@@ -33,17 +33,23 @@ function Register() {
   let [errorMessage, setErrorMessage] = useState(null);
   let [countries, setCountries] = useState(null);
 
+  const handleNavigation = useCallback((path) => {
+    history.push(path);
+    history.goForward();
+  }, [history]);
+
   useEffect(() => {
     if (authState.user) {
       handleNavigation(Routes.Browse);
     }else{
-      var data = getAllCountries();
-
-      if(data.Status === RapidApi.Succes){
-        setCountries(data.Result);
-      }
+      Promise.resolve(getAllCountries()).then((data)=>{
+        
+        if(data?.Status === RapidApi.Succes){
+          setCountries(data.Result);
+        }
+      })
     }
-  });
+  },[setCountries, handleNavigation,  authState.user]);
 
   async function handleNewRegistration() {
 
@@ -59,11 +65,6 @@ function Register() {
     }
   }
 
-  function handleNavigation(path) {
-    history.push(path);
-    history.goForward();
-  }
-
   return (
     <main className="register">
       <header className="txt-center"></header>
@@ -77,7 +78,7 @@ function Register() {
           <TextField Id="surname" DisplayName="Surname" Placeholder="Surname" OnInput={setSurname}/>
           <GenderSelector Id="gender" DisplayName="Gender" OnChange={setGender}/>
           <DateSelector Id="birthdate" DisplayName="Birthdate" OnChange={setBirthdate} />
-          <CountrySelector Id="country" DisplayName="Country" Items={countries} OnChange={setCountry}/>
+          <CountrySelector Id="country" DisplayName="Country" Items={countries??[{}]} OnChange={setCountry}/>
           <ErrorField ErrorMessage={errorMessage}/>
 
           <Button Text={"Registreren"} Type={"submit"} />
