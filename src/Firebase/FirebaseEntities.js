@@ -1,5 +1,6 @@
 export const Tables = {
-  Account: "Account",
+  Accounts: "Accounts",
+  Countries: "Countries",
 };
 
 export class Account {
@@ -8,6 +9,14 @@ export class Account {
     this.Surname = surname;
     this.Gender = gender;
     this.Birthdate = birthdate;
+  }
+}
+
+export class Country {
+  constructor(country, countrycode, id) {
+    this.Country = country;
+    this.Countrycode = countrycode;
+    this.Id = id;
   }
 }
 

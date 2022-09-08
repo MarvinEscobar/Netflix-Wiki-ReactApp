@@ -31,9 +31,9 @@
     border-radius: 2px;
   }
 
-  .browse .main-container> label:first-of-type{
+  .browse .main-container label{
     color:white;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .browse #country{

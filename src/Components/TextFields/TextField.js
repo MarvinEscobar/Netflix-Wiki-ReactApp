@@ -9,7 +9,7 @@ function TextField(props) {
         className="textfield"
         type="text"
         placeholder={props.Placeholder}
-        value={props.Value??''}
+        value={props.Value}
         onInput={(e) => props.OnInput(e.target.value)}
         name={props.DisplayName}
       />

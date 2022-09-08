@@ -21,7 +21,9 @@ export async function handleRegistrationAsync(
   confirmedPassword,
   gender,
   birthdate,
-  countrycode
+  country,
+  countrycode,
+  id
 ) {
   if (
     !email ||
@@ -32,8 +34,9 @@ export async function handleRegistrationAsync(
     !gender ||
     gender === '' ||
     !birthdate ||
-    !countrycode ||
-    countrycode === ''
+    !country ||
+    !countrycode||
+    !id
   )
     return new Result(null, Error.AllFieldsRequired);
 
@@ -47,13 +50,19 @@ export async function handleRegistrationAsync(
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        await setDoc(doc(db, Tables.Account, user.uid), {
+        await setDoc(doc(db, Tables.Accounts, user.uid), {
           firstname,
           surname,
           gender,
-          birthdate,
-          countrycode,
+          birthdate
         });
+
+        await setDoc(doc(db, Tables.Countries, user.uid), {
+          country,
+          countrycode,
+          id
+        });
+
         return new Result(user, Firebase.Succes);
       })
       .catch((error) => {
@@ -97,7 +106,7 @@ export async function deleteAsync(user) {
   return await Promise.resolve(
     await deleteUser(user)
       .then(async () => {
-        await deleteDoc(doc(db, Tables.Account, user.uid));
+        await deleteDoc(doc(db, Tables.Accounts, user.uid));
         return new Result(true, Firebase.Succes);
       })
       .catch((error) => {
@@ -121,7 +130,23 @@ export function getAuthState() {
 
 export async function getAccount(uid) {
   try {
-    const docRef = doc(db, Tables.Account, uid);
+    const docRef = doc(db, Tables.Accounts, uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return new Result(docSnap.data(), Firebase.Succes);
+    } else {
+      return new Result(null, Firebase.Default);
+    }
+  } catch (error) {
+    let message = ReadFireBaseErrorCode(error.code);
+    return new Result(null, message);
+  }
+}
+
+export async function getCountry(uid) {
+  try {
+    const docRef = doc(db, Tables.Countries, uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -140,8 +165,7 @@ export async function updateAccountAsync(
   firstname,
   surname,
   gender,
-  birthdate,
-  countrycode
+  birthdate
 ) {
   try {
 
@@ -150,21 +174,46 @@ export async function updateAccountAsync(
       !surname ||
       !gender ||
       gender === '' ||
-      !birthdate ||
-      !countrycode ||
-      countrycode === ''
+      !birthdate
     )
       return new Result(null, Error.AllFieldsRequired);
 
     if (!underAgeValidate(birthdate)) return new Result(null, Error.AgeLimition);
 
-    const docRef = doc(db, Tables.Account, uid);
+    const docRef = doc(db, Tables.Accounts, uid);
     await updateDoc(docRef, {
       firstname,
       surname,
       gender,
-      birthdate,
+      birthdate
+    });
+    return new Result(true, Firebase.Succes);
+  } catch (error) {
+    let message = ReadFireBaseErrorCode(error.code);
+    return new Result(false, message);
+  }
+}
+
+export async function updateCountryAsync(
+  uid,
+  country,
+  countrycode,
+  id
+) {
+  try {
+
+    if (
+      !country ||
+      !countrycode ||
+      !id
+    )
+      return new Result(null, Error.AllFieldsRequired);
+
+    const docRef = doc(db, Tables.Countries, uid);
+    await updateDoc(docRef, {
+      country,
       countrycode,
+      id
     });
     return new Result(true, Firebase.Succes);
   } catch (error) {

@@ -6,7 +6,7 @@ function ProductCard(props){
               <img
                 src={props.Value.img}
                 alt=""/>
-              <label>{props.Value.title} {props.Value.rating}</label>
+              <label>{props.Value.title} </label>
             </a>
     );
 }

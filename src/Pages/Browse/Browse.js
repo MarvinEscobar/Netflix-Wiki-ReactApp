@@ -7,7 +7,7 @@ import CategoryMenu from "../../Components/TopMenu/CategoryMenu";
 import { Routes } from "../../Constants/Environment";
 import { getAllCountries, searchTitles } from '../../Data/RapidApi';
 import { Firebase, RapidApi } from '../../Constants/Messages';
-import { getAccount } from '../../Firebase/FirebaseEntitiesContext';
+import { getCountry } from '../../Firebase/FirebaseEntitiesContext';
 import CountrySelector from '../../Components/CountrySelector/CountrySelector';
 
 function Browse() {
@@ -33,11 +33,11 @@ function Browse() {
           setCountries(countriesResult.Result);
         }
 
-        let accountResponse = await getAccount(authState.user.uid);
-        if (accountResponse.Status === Firebase.Succes) {
-          setCountry(accountResponse.Result.countrycode);
+        let countryResponse = await getCountry(authState.user.uid);
+        if (countryResponse.Status === Firebase.Succes) {
+          setCountry(countryResponse.Result);
 
-          let titlesResult = await searchTitles({ country_list: [accountResponse.Result.countrycode] })
+          let titlesResult = await searchTitles({ country_list: [countryResponse.Result.id] })
           if (titlesResult.Status === RapidApi.Succes) {
 
             setData(titlesResult.Result);
@@ -49,9 +49,9 @@ function Browse() {
     }
   }, [setCountries, setCountry, setData, handleNavigation, authState, countries, country]);
 
-  async function switchData(countrycode) {
-    setCountry(countrycode);
-    let titlesResult = await searchTitles({ country_list: [countrycode] })
+  async function switchData(countryItem) {
+    setCountry(countryItem);
+    let titlesResult = await searchTitles({ country_list: [countryItem.id] })
     if (titlesResult.Status === RapidApi.Succes) {
       setData(titlesResult.Result);
     }

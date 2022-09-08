@@ -6,7 +6,13 @@
     font-weight: 800;
     width: calc(100% - 20px);
     background-color: var(--dark);
-    opacity: 0.6;
+    opacity: 0.8;
     color:var(--secondary);
+    transition: .3s;
 }
 
+
+.productcard:hover label{
+    opacity: 1;
+    background-color: var(--secondary);
+}
