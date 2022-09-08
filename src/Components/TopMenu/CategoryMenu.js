@@ -2,15 +2,18 @@ import "./TopMenu.css";
 
 function CategoryMenu(props) {
   return (
-    <nav className="genres">
-      <a href="#home" className="genre">
-        Home
+    <nav className="genres">  
+      <a href="#all" className="genre">
+        All
       </a>
-      <a href="#second" className="genre">
-        Second
+      <a href="#tmovs" className="genre">
+        Movies
       </a>
-      <a href="#third" className="genre">
-        third
+      <a href="#tseries" className="genre">
+        Series
+      </a>
+      <a href="#expiring" className="genre">
+        Expiring
       </a>
     </nav>
   );

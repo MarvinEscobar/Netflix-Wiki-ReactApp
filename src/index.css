@@ -47,12 +47,18 @@ code {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   padding: 10px 0 10px 0;
+  background:var(--primary);
   color: grey;
   width: 100%;
-  z-index: 0;
+  opacity: 0.8;
+  
+}
+
+footer:hover{
+  opacity: 1;
 }
 
 .editform {

@@ -40,12 +40,18 @@
     padding:10px;
     color:var(--light);
     text-decoration: none;
+    transition:.4s;
 }
 
+.genre:hover{
+    
+    color:var(--secondary);
+}
 .logo-area:hover,#userlnk:hover, .category:hover{
-    transition: .3s;
+    transition: .6s;
     transform: scale(1.1);
     cursor:pointer;
+
 }
 
 .menus {

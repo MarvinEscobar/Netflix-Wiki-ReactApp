@@ -1,0 +1,57 @@
+.location h1 {
+  color: var(--light);
+}
+
+.location .spinner{
+    margin-top:100px;
+}
+
+.location a{
+  text-decoration: none;
+  color:var(--secondary);
+}
+
+.productcard label {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  font-weight: 800;
+  width: calc(100% - 20px);
+  background-color: var(--dark);
+  opacity: 0.8;
+  color: var(--secondary);
+  transition: 0.3s;
+}
+
+.productcard:hover label {
+  opacity: 1;
+  background-color: var(--secondary);
+}
+
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ }
+
+ .box p {
+  color :white;
+  font-size: large;
+  font-weight: 800;
+ }
+.box a {
+  transform: scale(1);
+  transition: .4s;  
+  margin: 0 20px 20px 0;
+}
+
+.box a:hover { 
+  transform: scale(1.2);
+  z-index: 1;
+}
+
+.box img {
+  border-radius: 2px;
+}
