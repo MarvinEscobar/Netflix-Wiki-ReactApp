@@ -38,8 +38,8 @@ function AccountDelete() {
           <div className="editform">
             
             <label>Delete account?</label>
-            <Button Text={"Delete"} OnClick={()=> handleDelete()} />
-            <Button Text={"Back"} Type="button" OnClick={()=> history.goBack()} />
+            <Button Class="btn-primary"Text={"Delete"} OnClick={()=> handleDelete()} />
+            <Button Class="btn-secondary" Text={"Back"} Type="button" OnClick={()=> history.goBack()} />
           </div>
         </section>
       </main>

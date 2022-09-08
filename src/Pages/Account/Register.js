@@ -79,7 +79,7 @@ function Register() {
           <CountrySelector Id="country" DisplayName="Country" Value={country} Items={countries ?? [{}]} OnChange={setCountry} />
           <ErrorField ErrorMessage={errorMessage} />
 
-          <Button Text={"Register"} Type={"submit"} />
+          <Button Class="btn-primary" Text={"Register"} Type={"submit"} />
         </EditForm>
       </section>
     </main>

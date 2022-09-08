@@ -47,11 +47,16 @@
     
     color:var(--secondary);
 }
-.logo-area:hover,#userlnk:hover, .category:hover{
+.logo-area:hover,.category:hover{
     transition: .6s;
     transform: scale(1.1);
     cursor:pointer;
 
+}
+#userlnk:hover{
+    transition: .6s;
+    cursor:pointer;
+    color:var(--secondary);
 }
 
 .menus {

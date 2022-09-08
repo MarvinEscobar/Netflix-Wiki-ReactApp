@@ -20,8 +20,8 @@ function Profile() {
   const history = useHistory();
   const { logout, ...authState } = useContext(AuthenticationStateContext);
 
-  let [firstname, setFirstname] = useState(null);
-  let [surname, setSurname] = useState(null);
+  let [firstname, setFirstname] = useState('');
+  let [surname, setSurname] = useState('');
   let [gender, setGender] = useState(null);
   let [country, setCountry] = useState(null);
   let [birthdate, setBirthdate] = useState(null);
@@ -98,11 +98,12 @@ function Profile() {
           <GenderSelector Id="gender" DisplayName="Gender" Value={gender} OnChange={setGender} />
           <DateSelector Id="birthdate" DisplayName="Birthdate" Value={birthdate} OnChange={setBirthdate} />
           <CountrySelector Id="country" DisplayName="Country" Value={country} Items={countries} OnChange={setCountry} />
-          <Button Text={"Change password"} Type={"button"} OnClick={() => handleNavigation(Routes.PasswordUpdate)} />
-          <Button Text={"Update"} Type={"submit"} />
+          
+          <Button Class="btn-primary" Text={"Update"} Type={"submit"} />
+          <Button Class="btn-secondary" Text={"Back"} Type="button" OnClick={() => history.goBack()} />
+          <Button Class="btn-secondary" Text={"Change password"} Type={"button"} OnClick={() => handleNavigation(Routes.PasswordUpdate)} />
           <CustomLink Title="Delete account" To={Routes.AccountDelete} />
           <ErrorField ErrorMessage={errorMessage} />
-          <Button Text={"Back"} Type="button" OnClick={() => history.goBack()} />
         </EditForm>
       </section>
     </main>

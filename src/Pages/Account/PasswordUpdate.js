@@ -97,8 +97,8 @@ function PasswordUpdate() {
           />
           <ErrorField ErrorMessage={errorMessage} />
 
-          <Button Text={"Update"} Type={"submit"} />
-          <Button Text={"Back"} Type="button" OnClick={() => history.goBack()} />
+          <Button Class="btn-primary" Text={"Update"} Type={"submit"} />
+          <Button Class="btn-secondary" Text={"Back"} Type="button" OnClick={() => history.goBack()} />
         </EditForm>
       </section>
     </main>

@@ -1,12 +1,20 @@
 .btn {
   border-radius: 25px;
   padding: 5px 20px 5px 20px;
-  background-color: #e50914;
-  color: white;
   font-weight: 700;
   border: none;
 }
 .btn:hover {
   transition: 0.3s;
   transform: scale(1.1);
+}
+
+.btn-primary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: var(--dark);
+  color: var(--light);
 }
