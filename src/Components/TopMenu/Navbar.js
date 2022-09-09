@@ -6,6 +6,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthenticationStateContext } from "../../Contexts/AuthenticationStateProvider";
 import { Routes } from "../../Constants/Environment";
+import Searhbar from './Searchbar';
 
 function Navbar() {
   const history = useHistory();
@@ -17,9 +18,10 @@ function Navbar() {
   }
 
   return (
-    <nav>
+    <nav id="navigation-area">
       <ul className="menus">
-
+        
+      <Searhbar/>
         {authState.user ? (
           <>
             {menuItems.map((menu, index) => {

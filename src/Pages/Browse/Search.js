@@ -13,7 +13,6 @@ function Search() {
   const expiring = queryParams.get("expiring");
   const type = queryParams.get("type");
   const title = queryParams.get("title");
-  const person = queryParams.get("person");
 
   const history = useHistory();
   const { ...authState } = useContext(AuthenticationStateContext);
@@ -53,16 +52,13 @@ function Search() {
         if(title)
           params["title"]=title;
 
-        if(person)
-          params["person"]=person;
-
         setData(await fetchDataAsync(params));
       };
 
       if (!data)
         fetchData();
     }
-  }, [setData, handleNavigation, data, authState, country_list, limit, expiring, type, title, person]);
+  }, [setData, handleNavigation, data, authState, country_list, limit, expiring, type, title]);
 
   async function fetchDataAsync(params) {
 
@@ -73,7 +69,7 @@ function Search() {
   return (
     <main className="browse">
       <section className="main-container">
-        <SearchGallery Id="search-all" Href="#" Title={`Searchresults `} Count={data?.length} Data={data} />
+        <SearchGallery Id="search-all" Title={`Searchresults `} Count={data?.length??0} Data={data} />
       </section>
     </main>
   );

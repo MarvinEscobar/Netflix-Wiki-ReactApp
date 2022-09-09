@@ -24,7 +24,7 @@ function TopMenu() {
   return (
     <div className="topmenu">
       <div
-        className="logo-area"
+        id="logo-area"
         onClick={() => handleNavigation(authState.user ? Routes.Browse : Routes.Home)}
       >
         <img src={Logo} className="App-logo" alt="logo" />

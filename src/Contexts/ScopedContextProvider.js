@@ -1,11 +1,19 @@
-import React, { createContext } from 'react';
-export const Context = createContext(null);
+import React, { createContext, useState } from 'react';
+
+export const ScopedContext = createContext(null);
 
 function ScopedContextProvider({ children }) {
+  let [selectedCountry, setSelectedCountry] = useState(null);
+
+  const data = {
+    setSelectedCountry: setSelectedCountry,
+    selectedCountry: selectedCountry
+  };
+
   return (
-    <Context.Provider value={null}>
+    <ScopedContext.Provider value={data}>
       { children }
-    </Context.Provider>
+    </ScopedContext.Provider>
   );
 }
 

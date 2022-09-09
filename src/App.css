@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 5vmin;
+  width: calc(100% - 20px);
   padding:10px;
   pointer-events: none;
 }
