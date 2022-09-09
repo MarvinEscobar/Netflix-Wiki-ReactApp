@@ -10,6 +10,7 @@ import Login from "./Pages/Authentication/Login";
 import Logout from "./Pages/Authentication/Logout";
 import PasswordUpdate from "./Pages/Account/PasswordUpdate";
 import Profile from "./Pages/Account/Profile";
+import Search from "./Pages/Browse/Search";
 import {Routes} from './Constants/Environment';
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Route path={Routes.RegisterParams} >
           <Register />
         </Route>
-        <Route path={Routes.Browse}>
+        <Route exact path={Routes.Browse}>
           <Browse />
         </Route>
         <Route path={Routes.AccountDelete}>
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path={Routes.PasswordUpdate}>
           <PasswordUpdate/>
+        </Route>
+        <Route path={Routes.Search}>
+          <Search/>
         </Route>
       </Switch>
       <footer className="txt-center">Deze web aplicatie is in opdracht van Novi hogeshool gemaakt.</footer>

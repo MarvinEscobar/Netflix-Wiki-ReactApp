@@ -1,13 +1,12 @@
 import ProductCard from './ProductCard';
 import LoadingSpinner from '../../Resources/Images/Loading-spinner.svg';
-import { Link } from 'react-router-dom';
 
-function ProductGallery(props) {
+function SearchGallery(props) {
   
     if(props.Data && props.Data.length === 0){
       return (
         <div className="location" id={props.Id}>
-        <h1 id={props.Id}>{props.Title}<Link to={props.Href}> {` | Show all (${props.Count})`}</Link></h1>
+        <h1 id={props.Id}>{props.Title}<span>{` | Results (${props.Count})`}</span></h1>
         <div className="box">
           <p>No data available</p>
         </div>
@@ -17,7 +16,7 @@ function ProductGallery(props) {
 
     return (
         <div className="location" id={props.Id}>
-        <h1 id={`p-${props.Id}`}>{props.Title}<Link to={props.Href}> {` | Show all (${props.Count})`}</Link></h1>
+        <h1 id={`p-${props.Id}`}>{props.Title} <span>{` | Results (${props.Count})`}</span></h1>
         <div className="box">
           {props.Data ? props.Data.map((item, index) => {
             return (
@@ -33,4 +32,4 @@ function ProductGallery(props) {
     );
 }
 
-export default ProductGallery;
+export default SearchGallery;

@@ -7,6 +7,7 @@ export const Routes={
     AccountDelete:"/AccountDelete",
     Profile:"/profile",
     PasswordUpdate:"/passwordupdate",
+    Search:"/search",
     Browse:"/browse"    
 };
 

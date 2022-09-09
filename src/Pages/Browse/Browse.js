@@ -9,6 +9,7 @@ import { Firebase, RapidApi } from '../../Constants/Messages';
 import { getCountry } from '../../Firebase/FirebaseEntitiesContext';
 import CountrySelector from '../../Components/CountrySelector/CountrySelector';
 import ProductGallery from '../../Components/ProductComponents/ProductGallery';
+
 function Browse() {
   const history = useHistory();
   const { ...authState } = useContext(AuthenticationStateContext);
@@ -69,10 +70,10 @@ function Browse() {
       <CategoryMenu />
       <section className="main-container">
         <CountrySelector Id="country" DisplayName="Country" Value={country} Items={countries ?? [{}]} OnChange={async value => switchDataAsync(value)} />
-        <ProductGallery Id="all" Href="/search" Title={`Available on Netflix in ${country?.country}`} Count={country?.tvids} Data={data} />
-        <ProductGallery Id="tmovs" Href="/search" Title={`Movies in ${country?.country}`} Count={country?.tmovs} Data={movies} />
-        <ProductGallery Id="tseries" Href="/search" Title={`Series in ${country?.country}`} Count={country?.tseries} Data={series} />
-        <ProductGallery Id="expiring" Href="/search" Title={`Expiring in ${country?.country}`} Count={country?.expiring} Data={expiring} />
+        <ProductGallery Id="all" Href={`/search?country_list=${country?.country}&limit=${country?.tvids}`} Title={!country?.country ?"Loading...": `Available on Netflix in ${country?.country ?? 0}`} Count={country?.tvids} Data={data} />
+        <ProductGallery Id="tmovs" Href={`/search?country_list=${country?.country}&limit=${country?.tmovs}&type=movies`} Title={!country?.country ?"Loading...":`Movies in ${country?.country ?? 0}`} Count={country?.tmovs} Data={movies} />
+        <ProductGallery Id="tseries" Href={`/search?country_list=${country?.country}&limit=${country?.tseries}&type=series`} Title={!country?.country ?"Loading...":`Series in ${country?.country ?? 0}`} Count={country?.tseries} Data={series} />
+        <ProductGallery Id="expiring" Href={`/search?country_list=${country?.country}&limit=${country?.expiring}&expiring=true`} Title={!country?.country ?"Loading...":`Expiring in ${country?.country ?? 0}`} Count={country?.expiring} Data={expiring} />
       </section>
     </main>
   );
