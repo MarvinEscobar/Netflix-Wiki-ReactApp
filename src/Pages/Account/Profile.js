@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthenticationStateContext } from "../../Contexts/AuthenticationStateProvider";
 import TextField from "../../Components/TextFields/TextField";
-import { Routes } from '../../Constants/Environment';
+import { Keys, Routes } from '../../Constants/Environment';
 import GenderSelector from "../../Components/GenderSelector/GenderSelector";
 import DateSelector from "../../Components/DateSelector/DateSelector";
 import Button from "../../Components/Button/Button";
@@ -83,8 +83,12 @@ function Profile() {
         setErrorMessage(countryResult?.Status);
         return;
       }
+      localStorage.setItem(Keys.countryId,country.id);
+
+      alert("Your profile has succesfully been updated.");
 
       handleNavigation(Routes.Browse);
+      window.location.reload();
     }
   }
 
@@ -98,9 +102,8 @@ function Profile() {
           <GenderSelector Id="gender" DisplayName="Gender" Value={gender} OnChange={setGender} />
           <DateSelector Id="birthdate" DisplayName="Birthdate" Value={birthdate} OnChange={setBirthdate} />
           <CountrySelector Id="country" DisplayName="Country" Value={country} Items={countries} OnChange={setCountry} />
-          
           <Button Class="btn-primary" Text={"Update"} Type={"submit"} />
-          <Button Class="btn-secondary" Text={"Back"} Type="button" OnClick={() => history.goBack()} />
+          <Button Class="btn-secondary" Text={"Previous page"} Type="button" OnClick={() => history.goBack()} />
           <Button Class="btn-secondary" Text={"Change password"} Type={"button"} OnClick={() => handleNavigation(Routes.PasswordUpdate)} />
           <CustomLink Title="Delete account" To={Routes.AccountDelete} />
           <ErrorField ErrorMessage={errorMessage} />

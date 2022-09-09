@@ -23,18 +23,17 @@ export function searchTitles(params) {
 export function getImagesById(netflix_id) {
     let endpoint = Endpoints.Images;
     endpoint.params = {netflix_id:netflix_id};
-    return fetchData(endpoint);
+    return fetchTitleData(endpoint);
 }
 
 export function getDetailsById(netflix_id) {
     let endpoint = Endpoints.Details;
     endpoint.params = {netflix_id:netflix_id};
-    return fetchData(Endpoints.Details);
+    return fetchTitleData(Endpoints.Details);
 }
 
 async function fetchData(endpoint) {
     try {
-        
         return await axios.request(endpoint).then(function (response) {
             return new Result(response.data.results, RapidApi.Succes);
         }).catch(function (error) {
@@ -45,4 +44,16 @@ async function fetchData(endpoint) {
     }
 
 }
+async function fetchTitleData(endpoint) {
+    try {
+        
+        return await axios.request(endpoint).then(function (response) {
+            return new Result(response.data, RapidApi.Succes);
+        }).catch(function (error) {
+            return new Result(null, error);
+        });
+    } catch (error) {
+        return new Result(null, error);
+    }
 
+}

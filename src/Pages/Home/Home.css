@@ -5,3 +5,11 @@
 .home .textfield{
     margin-right: 10px;
 }
+
+.home form{
+    display: flex;
+}
+
+.register-btn{
+    margin-left:10px;
+}

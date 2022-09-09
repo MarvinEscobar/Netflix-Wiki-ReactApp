@@ -3,11 +3,12 @@ export const Routes={
     Login:"/login",
     Logout:"/logout",
     Register:"/register",
-    RegisterParams:"/register/:newemail",
-    AccountDelete:"/AccountDelete",
+    RegisterParams:"/register/:newemail?",
+    AccountDelete:"/accountdelete",
     Profile:"/profile",
     PasswordUpdate:"/passwordupdate",
     Search:"/search",
+    ProductDetails:"/productdetails/:netflix_id",
     Browse:"/browse"    
 };
 

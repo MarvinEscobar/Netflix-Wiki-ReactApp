@@ -1,6 +1,7 @@
 .menu-items {
     position: relative;
     font-size: 14px;
+    transition: .6s;
   }
   
   .menu-items a {
@@ -27,6 +28,7 @@
   
   .menu-items a:hover,
   .menu-items button:hover {
+    transition: .6s;
     background-color: var(--secondary);
   }
 

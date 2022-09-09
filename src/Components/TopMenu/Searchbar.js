@@ -10,7 +10,7 @@ function Searhbar() {
     let [searchArgs, setSearchArgs] = useState('');
 
     async function handleSearch() {
-        console.log(searchArgs);
+        
         if (searchArgs && searchArgs !== '') {
             history.push(`/search?country_list=${selectedCountry?.id}&limit=${selectedCountry?.tvids}&title=${searchArgs}`);
             history.goForward();

@@ -48,7 +48,7 @@ function Login() {
           <label>Password</label>
           <PasswordField AutoComplete="current-password" Placeholder="Password" OnInput={setPassword} />
 
-          <Button Text={"Login"} Type="submit" />
+          <Button Class="btn-primary" Text={"Login"} Type="submit" />
         </EditForm>
       </section>
     </main>

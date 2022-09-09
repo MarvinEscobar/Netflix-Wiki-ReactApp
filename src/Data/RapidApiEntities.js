@@ -35,13 +35,12 @@ export const Endpoints = {
     },
     Details: {
         method: 'GET',
-        url: 'https://unogs-unogs-v1.p.rapidapi.com/search/people',
-        params: { person_type: 'Actor' },
+        url: 'https://unogs-unogs-v1.p.rapidapi.com/title/details',
         headers: {
-            'X-RapidAPI-Key': 'f23e5ddefemshd3dd33b57f024e5p17703djsn41df2b7b17e2',
-            'X-RapidAPI-Host': 'unogs-unogs-v1.p.rapidapi.com'
+          'X-RapidAPI-Key': 'f23e5ddefemshd3dd33b57f024e5p17703djsn41df2b7b17e2',
+          'X-RapidAPI-Host': 'unogs-unogs-v1.p.rapidapi.com'
         }
-    },
+      },
     Images: {
         method: 'GET',
         url: 'https://unogs-unogs-v1.p.rapidapi.com/title/images',

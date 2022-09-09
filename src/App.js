@@ -10,6 +10,7 @@ import Login from "./Pages/Authentication/Login";
 import Logout from "./Pages/Authentication/Logout";
 import PasswordUpdate from "./Pages/Account/PasswordUpdate";
 import Profile from "./Pages/Account/Profile";
+import ProductDetails from "./Pages/Browse/ProductDetails";
 import Search from "./Pages/Browse/Search";
 import {Routes} from './Constants/Environment';
 
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path={Routes.Search}>
           <Search/>
+        </Route>
+        <Route path={Routes.ProductDetails}>
+          <ProductDetails/>
         </Route>
       </Switch>
       <footer className="txt-center">Deze web aplicatie is in opdracht van Novi hogeshool gemaakt.</footer>

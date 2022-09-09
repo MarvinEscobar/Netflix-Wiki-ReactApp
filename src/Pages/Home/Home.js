@@ -29,9 +29,9 @@ function Home() {
       </header>
 
       <section>
-        <form onSubmit={e => {e.preventDefault(); handleRegistration();}}>
+        <form className="searchform" onSubmit={e => {e.preventDefault(); handleRegistration();}}>
           <EmailField Placeholder="Emailaddress" OnInput={setEmail} />
-          <Button Text={"Register"}  />
+          <Button Class="btn-primary register-btn" Text={"Register"}  />
         </form>
       </section>
     </main>

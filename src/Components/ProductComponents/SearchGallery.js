@@ -21,7 +21,6 @@ function SearchGallery(props) {
           {props.Data ? props.Data.map((item, index) => {
             return (
               <ProductCard id={`${props.Id}-${index}`} Id={`${props.Id}-id-${index}`} key={`${props.Id}-key-${index}`} Value={item} />
-              
             );
           })
             :

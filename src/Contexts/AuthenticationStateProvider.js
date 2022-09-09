@@ -8,7 +8,7 @@ import {
   logoutAsync
 } from "../Firebase/FirebaseEntitiesContext";
 import { Firebase } from "../Constants/Messages";
-import { StatusCode } from "../Constants/Environment";
+import { Keys, StatusCode } from "../Constants/Environment";
 
 export const AuthenticationStateContext = createContext(null);
 
@@ -60,6 +60,7 @@ function AuthenticationStateProvider({ children }) {
   }
 
   async function logout() {
+    localStorage.removeItem(Keys.countryId);
     let result = await Promise.resolve(logoutAsync());
 
     if (result) {

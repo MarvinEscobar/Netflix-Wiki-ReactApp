@@ -30,7 +30,7 @@ function Search() {
     }
     else {
       const fetchData = async () => {
-        console.log("fetching data");
+        
         setData(null);
 
         let params = {

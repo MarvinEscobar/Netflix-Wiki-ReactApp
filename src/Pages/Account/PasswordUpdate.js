@@ -45,7 +45,7 @@ function PasswordUpdate() {
         );
 
         if (result?.Status === Firebase.Succes) {
-          alert("Your password has been succesfully updated.");
+          alert("Your password has succesfully been updated.");
           handleNavigation(Routes.Browse);
         } else {
           setErrorMessage(result?.Status);
@@ -98,7 +98,7 @@ function PasswordUpdate() {
           <ErrorField ErrorMessage={errorMessage} />
 
           <Button Class="btn-primary" Text={"Update"} Type={"submit"} />
-          <Button Class="btn-secondary" Text={"Back"} Type="button" OnClick={() => history.goBack()} />
+          <Button Class="btn-secondary" Text={"Previous page"} Type="button" OnClick={() => history.goBack()} />
         </EditForm>
       </section>
     </main>

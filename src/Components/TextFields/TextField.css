@@ -1,5 +1,6 @@
-.textfield{
-border-radius: 25px;
-padding: 5px 20px 5px 20px;
-border:none;
+.textfield {
+  border-radius: 25px;
+  padding: 5px 20px 5px 20px;
+  border: none;
+  width: calc(100% - 40px);
 }

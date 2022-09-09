@@ -4,9 +4,15 @@
   font-weight: 700;
   border: none;
 }
+
 .btn:hover {
   transition: 0.3s;
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transition: 0.3s;
+  transform: scale(0.95);
 }
 
 .btn-primary {
