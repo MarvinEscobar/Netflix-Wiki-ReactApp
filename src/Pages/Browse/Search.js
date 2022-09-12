@@ -18,7 +18,6 @@ function Search() {
   const { ...authState } = useContext(AuthenticationStateContext);
 
   let [data, setData] = useState(null);
-  console.log("Reloading");
 
   const handleNavigation = useCallback((path) => {
     history.push(path);

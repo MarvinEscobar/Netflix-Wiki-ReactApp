@@ -2,6 +2,7 @@
 .location{
   min-height: 300px;
 }
+
 .location h1 {
   color: var(--light);
 }
@@ -53,7 +54,6 @@
 
 .box a:hover { 
   transform: scale(1.2);
-  z-index: 1;
 }
 
 .box img {
